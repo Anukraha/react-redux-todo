@@ -22,7 +22,10 @@ db.sequelize.sync();
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
 // });
+const departmentsRoutes = require('./routes/departments.routes');
 
+// Use routes
+app.use('/departments', departmentsRoutes);
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Employee Manager" });

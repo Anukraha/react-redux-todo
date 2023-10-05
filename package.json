@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "nodejs-express-sequelize-postgresql",
   "version": "1.0.0",
   "description": "Node.js Rest Apis with Express, Sequelize & PostgreSQL",
@@ -24,52 +23,4 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.1"
   }
-=======
-  "name": "react-hooks-redux-toolkit-example-crud",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.8.5",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "axios": "^0.27.2",
-    "bootstrap": "^4.6.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.1",
-    "react-router-dom": "^6.16.0",
-    "react-scripts": "5.0.1",
-    "semver": "^7.5.4",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "description": "Build Redux-Toolkit CRUD application with React Hooks and Rest API calls in that: - Each item has id, title, description, published status. - We can create, retrieve, update, delete items. - There is a Search bar for finding items by title.",
-  "main": "index.js",
-  "author": "",
-  "license": "ISC"
->>>>>>> 6a8c4f50de5a2b67fb2a79c5d39182dbb3ecdc9a
 }

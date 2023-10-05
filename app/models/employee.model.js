@@ -13,14 +13,21 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
     },
     dept_id: {
-      type: Sequelize.INTEGER, // Assuming dept_id is an integer
+      type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'departments', // This refers to the table name in the database
-        key: 'id', // This refers to the primary key in the referenced table (Department)
+        model: 'departments',
+        key: 'id', // Assuming 'id' is the primary key of the 'departments' table
       }
     },
   });
 
+  // Define association with the Departments model
+  Employee.belongsTo(sequelize.models.departments, {
+    foreignKey: 'dept_id',
+    targetKey: 'id', // 'id' is the primary key of the 'departments' table
+    as: 'department',
+  });
+  
   return Employee;
 };

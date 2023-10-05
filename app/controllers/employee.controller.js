@@ -1,7 +1,23 @@
 const db = require("../models");
 const Employee = db.employees;
 const Op = db.Sequelize.Op;
+const Department = require("../models").departments;
 
+app.get("/departments/:id", (req, res) => {
+  const departmentId = req.params.id;
+
+  Department.findByPk(departmentId)
+    .then(department => {
+      if (department) {
+        res.json({ departmentName: department.dept_name });
+      } else {
+        res.status(404).json({ message: "Department not found" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ message: "Internal server error" });
+    });
+});
 // Create and Save a new employee
 exports.create = (req, res) => {
   // Validate request
