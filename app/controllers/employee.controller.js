@@ -41,7 +41,7 @@ exports.create = (req, res) => {
     // Create a todo for the newly created employee
     const todo = await Todo.create({
       employeeId: data.id,
-      description: `Complete ${data.emp_name}'s task`,
+      description: `Hello! Complete your tasks, ${data.emp_name}.`,
     });
     res.send({ employee: data, todo: todo });
   })
@@ -50,6 +50,25 @@ exports.create = (req, res) => {
       message: err.message || "Some error occurred while creating the employee."
     });
   });
+};
+
+exports.findAllTodos = (req, res) => {
+  const id = req.params.id;
+
+  Todo.findAll({
+    where: {
+      employeeId: id
+    }
+  })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving todos."
+      });
+    });
 };
 
 // Retrieve all employees from the database.
