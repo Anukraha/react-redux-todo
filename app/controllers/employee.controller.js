@@ -3,6 +3,15 @@ const Employee = db.employees;
 const Todo= db.todo;
 const Op = db.Sequelize.Op;
 
+Employee.hasOne(Todo, {
+  foreignKey: "employeeId",
+  as: "todo", 
+});
+
+Todo.belongsTo(Employee, {
+  foreignKey: "employeeId",
+  as: "employee", 
+});
 
 exports.create = (req, res) => {
   // Validate request
