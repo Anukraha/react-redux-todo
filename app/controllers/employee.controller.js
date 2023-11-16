@@ -101,7 +101,13 @@ exports.findAll = (req, res) => {
   const emp_name = req.query.emp_name;
   var condition = emp_name ? { emp_name: { [Op.iLike]: `%${emp_name}%` } } : null;
 
-  Employee.findAll({ where: condition })
+  Employee.findAll({ where: condition,
+    include: [{
+      model: Department,
+      as: 'department',
+    }],
+  
+  })
     .then(data => {
       res.send(data);
     })
