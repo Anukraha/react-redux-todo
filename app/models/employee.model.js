@@ -20,6 +20,10 @@ module.exports = (sequelize, Sequelize) => {
     todo_description: {
       type: Sequelize.JSON,
     },
+    departmentId: {
+      type: Sequelize.INTEGER,
+      defaultValue: 1001,
+    }
   });
 
 

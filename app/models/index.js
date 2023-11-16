@@ -19,7 +19,7 @@ db.sequelize = sequelize;
 
 db.employees = require("./employee.model.js")(sequelize, Sequelize);
 db.todo = require("./todo.js")(sequelize, Sequelize);
-
+db.department = require("./department.js")(sequelize, Sequelize);
 
 
 module.exports = db;

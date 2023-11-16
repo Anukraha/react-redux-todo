@@ -14,6 +14,7 @@ router.use(cors());
 
   router.get("/:id/todos", employees.findAllTodos);
 
+  router.get("/:id/dept", employees.findDept);
   // Retrieve a single employee with id
   router.get("/:id", employees.findOne);
 

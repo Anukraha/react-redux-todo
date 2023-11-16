@@ -1,6 +1,7 @@
 const db = require("../models");
 const Employee = db.employees;
 const Todo= db.todo;
+const Department = db.department;
 const Op = db.Sequelize.Op;
 
 Employee.hasOne(Todo, {
@@ -11,6 +12,16 @@ Employee.hasOne(Todo, {
 Todo.belongsTo(Employee, {
   foreignKey: "employeeId",
   as: "employee", 
+});
+
+Employee.belongsTo(Department, {
+  foreignKey: 'departmentId',
+  as: 'department', 
+});
+
+Department.hasMany(Employee, {
+  foreignKey: 'departmentId',
+  as: 'employees', 
 });
 
 exports.create = (req, res) => {
@@ -30,7 +41,8 @@ exports.create = (req, res) => {
     mobile: req.body.mobile,
     address: req.body.address,
     status: req.body.status, 
-    todo_description: req.body.todo_description
+    todo_description: req.body.todo_description,
+    departmentId: req.body.departmentId
     
   };
   
@@ -50,6 +62,19 @@ exports.create = (req, res) => {
       message: err.message || "Some error occurred while creating the employee."
     });
   });
+};
+
+exports.findDept = (req, res) => {
+  Department.findAll()
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving departments."
+      });
+    });
 };
 
 exports.findAllTodos = (req, res) => {
