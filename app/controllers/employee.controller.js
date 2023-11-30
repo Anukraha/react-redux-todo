@@ -3,6 +3,7 @@ const Employee = db.employees;
 const Todo= db.todo;
 const Department = db.department;
 const Op = db.Sequelize.Op;
+const Task = db.task;
 
 Employee.hasOne(Todo, {
   foreignKey: "employeeId",
@@ -62,6 +63,50 @@ exports.create = (req, res) => {
       message: err.message || "Some error occurred while creating the employee."
     });
   });
+};
+
+exports.updateTask = async (req, res) => {
+  const taskId = req.params.taskId;
+
+  try {
+    const task = await Task.findByPk(taskId);
+
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+
+    // Update the task_status field
+    task.task_status = true;
+
+    // Save changes to the database
+    await task.save();
+
+    res.json({
+      task_id: task.task_id,
+      task_status: task.task_status,
+    });
+  } catch (error) {
+    console.error('Error updating task status:', error);
+    res.status(500).json({ error: 'Internal Server Error', message: error.message });
+  }
+};
+
+exports.fetchTask = (req, res) => {
+  console.log('Before fetching tasks...');
+Task.findAll()
+  .then(data => {
+    console.log('Tasks fetched successfully:', data);
+    res.send(data);
+  })
+  .catch(err => {
+    console.error('Error fetching tasks:', err);
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving tasks.",
+      error: err,
+    });
+  });
+console.log('After fetching tasks...');
+
 };
 
 exports.findDept = (req, res) => {

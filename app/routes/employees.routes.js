@@ -14,6 +14,10 @@ router.use(cors());
 
   router.get("/:id/todos", employees.findAllTodos);
 
+  router.get("/tasks", employees.fetchTask);
+
+  router.put("/tasks/:taskId", employees.updateTask);
+
   router.get("/:id/dept", employees.findDept);
   // Retrieve a single employee with id
   router.get("/:id", employees.findOne);
