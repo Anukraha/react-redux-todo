@@ -10,6 +10,14 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       allowNull: true,
     },
+    strikethroughCount: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0, 
+    },
+    nonStrikethroughCount: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0, 
+    },
   });
 
 return Todo

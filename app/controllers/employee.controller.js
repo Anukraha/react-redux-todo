@@ -96,6 +96,33 @@ exports.findAllTodos = (req, res) => {
     });
 };
 
+exports.updateStrikethroughCount = async (req, res) => {
+  try {
+    const id = req.params.id;  
+    const todo = await Todo.findOne({
+      where: { employeeId: id } 
+    });
+
+    if (!todo) {
+      return res.status(404).json({ error: 'Todo not found' });
+    }
+
+    const strikethroughCount = req.body.strikethroughCount;
+
+    todo.strikethroughCount = strikethroughCount;
+    await todo.save();
+
+    res.json({
+      id: todo.id,
+      description: todo.description,
+      strikethroughCount: todo.strikethroughCount,
+    });
+  } catch (error) {
+    console.error('Error updating strikethrough count:', error);
+    res.status(500).json({ error: 'Internal Server Error', message: error.message });
+  }
+};
+
 // Retrieve all employees from the database.
 exports.findAll = (req, res) => {
   const emp_name = req.query.emp_name;

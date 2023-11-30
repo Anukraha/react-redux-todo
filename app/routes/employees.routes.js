@@ -27,6 +27,9 @@ router.use(cors());
   // Delete all employees
   router.delete("/", employees.deleteAll);
 
+  router.put('/:id/todos/strikethrough', employees.updateStrikethroughCount);
+
+
   // Retrieve dept_name using dept_id
 
   module.exports = app => {
