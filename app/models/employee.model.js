@@ -23,6 +23,10 @@ module.exports = (sequelize, Sequelize) => {
     departmentId: {
       type: Sequelize.INTEGER,
       defaultValue: 1001,
+    },
+    task_no:{
+      type: Sequelize.INTEGER,
+      defaultValue: 0, 
     }
   });
 

@@ -6,6 +6,10 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    task_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     description: {
       type: Sequelize.JSON,
       allowNull: true,
@@ -18,6 +22,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       defaultValue: 0, 
     },
+    
   });
 
 return Todo

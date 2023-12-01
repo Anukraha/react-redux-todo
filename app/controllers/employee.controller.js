@@ -5,6 +5,7 @@ const Department = db.department;
 const Op = db.Sequelize.Op;
 const Task = db.task;
 
+
 Employee.hasOne(Todo, {
   foreignKey: "employeeId",
   as: "todo", 
@@ -43,7 +44,8 @@ exports.create = (req, res) => {
     address: req.body.address,
     status: req.body.status, 
     todo_description: req.body.todo_description,
-    departmentId: req.body.departmentId
+    departmentId: req.body.departmentId,
+    task_no: req.body.task_no
     
   };
   
@@ -66,28 +68,29 @@ exports.create = (req, res) => {
 };
 
 exports.updateTask = async (req, res) => {
-  const taskId = req.params.taskId;
+  const { taskId } = req.params;
 
   try {
-    const task = await Task.findByPk(taskId);
+    // Assuming you have a Task model with a 'task_status' field
+    const [updatedRowsCount, [updatedTask]] = await Task.update(
+      { task_status: true },
+      {
+        where: {
+          id: taskId,
+        },
+        returning: true, // Make sure to include this option to get the updated task
+      }
+    );
 
-    if (!task) {
+    if (updatedRowsCount === 0) {
       return res.status(404).json({ error: 'Task not found' });
     }
 
-    // Update the task_status field
-    task.task_status = true;
-
-    // Save changes to the database
-    await task.save();
-
-    res.json({
-      task_id: task.task_id,
-      task_status: task.task_status,
-    });
+    // Respond with the updated task
+    res.json(updatedTask);
   } catch (error) {
     console.error('Error updating task status:', error);
-    res.status(500).json({ error: 'Internal Server Error', message: error.message });
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 

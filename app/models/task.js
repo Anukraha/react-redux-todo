@@ -29,9 +29,9 @@ module.exports = (sequelize) => {
     try {
       await Task.sync({ force: true });
   
-      const task1 = { task_id: 'T001', task_name: 'Task 1', task_description: 'Implement google analytics', task_status: true };
-      const task2 = { task_id: 'T002', task_name: 'Task 2', task_description: 'Update the client status', task_status: true  };
-      const task3 = { task_id: 'T003', task_name: 'Task 3', task_description: 'Check the compatibility of site', task_status: false  };
+      const task1 = { task_id: 'T001', task_name: 'Task 1', task_description: 'Implement google analytics' };
+      const task2 = { task_id: 'T002', task_name: 'Task 2', task_description: 'Update the client status'  };
+      const task3 = { task_id: 'T003', task_name: 'Task 3', task_description: 'Check the compatibility of site'  };
   
       await Task.create(task1);
       await Task.create(task2);
