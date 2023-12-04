@@ -26,6 +26,13 @@ Department.hasMany(Employee, {
   as: 'employees', 
 });
 
+Task.belongsTo(Todo,{
+  foreignKey: "task_id",
+  as: "task",
+})
+
+Todo.hasOne(Task)
+
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.emp_name) {
