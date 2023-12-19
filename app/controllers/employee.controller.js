@@ -5,7 +5,6 @@ const Department = db.department;
 const Op = db.Sequelize.Op;
 const Task = db.task;
 
-
 Employee.hasOne(Todo, {
   foreignKey: "employeeId",
   as: "todo", 
@@ -25,13 +24,6 @@ Department.hasMany(Employee, {
   foreignKey: 'departmentId',
   as: 'employees', 
 });
-
-Task.belongsTo(Todo,{
-  foreignKey: "task_id",
-  as: "task",
-})
-
-Todo.hasOne(Task)
 
 exports.create = (req, res) => {
   // Validate request
